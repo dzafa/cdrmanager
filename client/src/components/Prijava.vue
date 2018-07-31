@@ -1,12 +1,13 @@
-
 <template>
-  <section class="hero is-light is-fullheight">
+  <section class="hero is-light is-fullheight ">
       <div class="hero-body">
         <div class="container">
           <div class="columns is-centered">
             <div class="column is-5-tablet is-4-desktop is-3-widescreen">
               <form class="box">
-                <div class="field">
+               <p class="help is-danger" v-if="error.failLogin">{{ error.msg }}</p>
+
+                <div class="field is-success">
                   <label class="label">Email</label>
                   <div class="control has-icons-left">
                     <input class="input" type="email" placeholder="e.g. ime.prezime@bhtelecom.ba" required
@@ -26,11 +27,14 @@
                       <i class="fa fa-lock"></i>
                     </span>
                   </div>
-                  <p class="help is-danger" v-if="error.password">{{ error.msg }}</p>
+                 
                 </div>
                 <div class="field">
-                  <button class="button is-success" @click="newUser">
-                    Registruj se!
+                <input type="checkbox" v-model="form.remember"> Zapamti me
+                </div>
+                <div class="field">
+                  <button class="button is-success" @click="login">
+                    Prijava
                   </button>
                 </div>
               </form>
@@ -46,43 +50,37 @@
 import AuthenticationService from '@/services/AuthenticationService'
 
 export default {
-  name: 'Registracija',
+  name: 'Prijava',
   data () {
     return {
       form: {
         email: '',
-        password: ''
+        password: '',
+        remember: null
       },
       error: {
-        email: false,
-        password: false,
+        failLogin: false,
         msg: ''
       }
     }
   },
   methods: {
-    async newUser () {
+    async login () {
       try {
-        this.resetErrors()
-        await AuthenticationService.register({
+        await AuthenticationService.login({
           email: this.form.email,
-          password: this.form.password
+          password: this.form.password,
+          remember: this.remember
         })
-        this.form.email = ''
-        this.form.password = ''
       } catch (error) {
-        this.resetErrors()
-        if (error.response.data.type === 'email') {
-          this.error.email = true
-        } else if (error.response.data.type === 'password') {
-          this.error.password = true
-        }
+        this.error.failLogin = true
         this.error.msg = error.response.data.error
       }
     },
     resetErrors () {
       this.error.email = false
       this.error.password = false
+      this.error.remember = false
       this.error.msg = ''
     }
   }
