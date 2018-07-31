@@ -9,5 +9,9 @@ module.exports = {
       dialect: process.env.DIALECT || 'sqlite',
       storage: '../database/bhtcloud.sqlite'
     }
+  },
+  authentication: {
+    jwtSecret: 'bhtcloudmanager',
+    jwtExpiresIn: 60 * 60 * 24 * 7 // ONE WEEK
   }
 };

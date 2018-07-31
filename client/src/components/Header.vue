@@ -1,11 +1,11 @@
 <template>
   <div class="hero-head ">
-    <nav class="navbar is-white is-fixed-top">
+    <nav class="navbar is-dark is-fixed-top">
       <div class="container">
-        <div class="navbar-brand">
-          <a class="navbar-item">
-             <img src="../assets/logo.png">
-          </a>
+        <div class="navbar-brand" >
+          <div class="navbar-item">
+             <a href="#" style="padding:0px; margin:0px"><img src="../assets/bht-mini.jpg" ></a>
+          </div>
           <span class="navbar-burger burger" data-target="navbarMenuHeroA">
             <span aria-hidden="true"></span>
             <span aria-hidden="true"></span>
@@ -14,12 +14,8 @@
         </div>
         <div id="navbarMenuHeroA" class="navbar-menu">
           <div class="navbar-end">
-            <a class="navbar-item is-active">
-              <router-link to="/prijava">Prijava</router-link>
-            </a>
-            <a class="navbar-item ">
-              <router-link to="/registracija">Registracija</router-link>
-            </a>
+            <router-link to="/prijava" tag="a" class="navbar-item">Prijava</router-link>
+            <router-link to="/registracija" tag="a" class="navbar-item">Registracija</router-link>
           </div>
         </div>
       </div>

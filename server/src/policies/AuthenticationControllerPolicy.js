@@ -14,13 +14,13 @@ module.exports = {
         case 'email':
           res.status(400).send({
             type: 'email',
-            error: 'Unesite ispravan format email adrese'
+            error: 'Format email adrese nije validan'
           });
           break;
         case 'password':
           res.status(400).send({
             type: 'password',
-            error: 'Lozinka ne moze sadrzavati brojeve. Minimalno 2 karaktera je obavezno za unos.'
+            error: 'Lozinka mora biti veca od 2 karaktera'
           });
           break;
         default:
@@ -48,13 +48,13 @@ module.exports = {
         case 'email':
           res.status(400).send({
             type: 'email',
-            error: 'Unesite ispravan format email adrese'
+            error: 'Format email adrese nije validan'
           });
           break;
         case 'password':
           res.status(400).send({
             type: 'password',
-            error: 'Lozinka ne moze sadrzavati brojeve. Minimalno 2 karaktera je obavezno za unos.'
+            error: 'Lozinka mora biti veća od 2 karaktera'
           });
           break;
         default:

@@ -1,5 +1,8 @@
+const Promise = require('bluebird');
+const bcrypt = Promise.promisifyAll(require('bcrypt-nodejs'));
+
 module.exports = (sequelize, DataTypes) => {
-  return sequelize.define('User', {
+  const User = sequelize.define('User', {
     email: {
       type: DataTypes.STRING,
       unique: true
@@ -7,5 +10,16 @@ module.exports = (sequelize, DataTypes) => {
     password: {
       type: DataTypes.STRING
     }
+  }, {
+    hooks: {
+      beforeCreate: (user, options) => {
+        user.password = bcrypt.hashSync(user.password);
+      }
+    }
   });
+
+  User.prototype.comparePassword = function (password) {
+    return bcrypt.compareAsync(password, this.password);
+  };
+  return User;
 };

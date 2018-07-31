@@ -5,8 +5,11 @@
           <div class="columns is-centered">
             <div class="column is-5-tablet is-4-desktop is-3-widescreen">
               <form class="box">
-               <p class="help is-danger" v-if="error.failLogin">{{ error.msg }}</p>
-
+                 <article class="message is-danger is-small" v-show="error.failedLogin">
+                  <div class="message-body">
+                  {{ error.msg }}
+                  </div>
+                </article>
                 <div class="field is-success">
                   <label class="label">Email</label>
                   <div class="control has-icons-left">
@@ -27,7 +30,6 @@
                       <i class="fa fa-lock"></i>
                     </span>
                   </div>
-                 
                 </div>
                 <div class="field">
                 <input type="checkbox" v-model="form.remember"> Zapamti me
@@ -59,7 +61,7 @@ export default {
         remember: null
       },
       error: {
-        failLogin: false,
+        failedLogin: false,
         msg: ''
       }
     }
@@ -73,7 +75,7 @@ export default {
           remember: this.remember
         })
       } catch (error) {
-        this.error.failLogin = true
+        this.error.failedLogin = true
         this.error.msg = error.response.data.error
       }
     },
