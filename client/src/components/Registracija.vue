@@ -27,6 +27,7 @@
                     </span>
                   </div>
                   <p class="help is-danger" v-if="error.password">{{ error.msg }}</p>
+                  <p class="help is-danger" v-if="error.default">{{ error.msg }}</p>
                 </div>
                 <div class="field">
                   <button class="button is-success" @click="newUser">
@@ -56,6 +57,7 @@ export default {
       error: {
         email: false,
         password: false,
+        default: false,
         msg: ''
       }
     }
@@ -64,10 +66,12 @@ export default {
     async newUser () {
       try {
         this.resetErrors()
-        await AuthenticationService.register({
+        const response = await AuthenticationService.register({
           email: this.form.email,
           password: this.form.password
         })
+        this.$store.dispatch('setToken', response.data.token)
+        this.$store.dispatch('setUser', response.data.user)
         this.form.email = ''
         this.form.password = ''
       } catch (error) {
@@ -76,6 +80,8 @@ export default {
           this.error.email = true
         } else if (error.response.data.type === 'password') {
           this.error.password = true
+        } else {
+          this.error.default = true
         }
         this.error.msg = error.response.data.error
       }

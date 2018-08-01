@@ -19,7 +19,6 @@ module.exports = {
       });
     } catch (error) {
       res.status(400).send({
-        type: 'email',
         error: 'Uneseni email postoji u bazi podataka'
       });
     }

@@ -13,10 +13,14 @@
           </span>
         </div>
         <div id="navbarMenuHeroA" class="navbar-menu">
-          <div class="navbar-end">
+          <div class="navbar-end" v-if="!$store.state.isUserLoggedIn">
             <router-link to="/prijava" tag="a" class="navbar-item">Prijava</router-link>
             <router-link to="/registracija" tag="a" class="navbar-item">Registracija</router-link>
           </div>
+          <div class="navbar-end" v-if="$store.state.isUserLoggedIn">
+            <router-link to="/postavke" tag="a" class="navbar-item">Postavke</router-link>
+          </div>
+          
         </div>
       </div>
     </nav>

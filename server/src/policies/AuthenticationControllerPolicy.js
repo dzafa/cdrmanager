@@ -47,13 +47,11 @@ module.exports = {
       switch (error.details[0].context.key) {
         case 'email':
           res.status(400).send({
-            type: 'email',
             error: 'Format email adrese nije validan'
           });
           break;
         case 'password':
           res.status(400).send({
-            type: 'password',
             error: 'Lozinka mora biti veća od 2 karaktera'
           });
           break;

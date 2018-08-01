@@ -13,19 +13,16 @@
                 <div class="field is-success">
                   <label class="label">Email</label>
                   <div class="control has-icons-left">
-                    <input class="input" type="email" placeholder="e.g. ime.prezime@bhtelecom.ba" required
-                          :class="{'is-danger': error.email}" v-model="form.email">
+                    <input class="input" type="email" placeholder="e.g. ime.prezime@bhtelecom.ba" required v-model="form.email">
                     <span class="icon is-small is-left">
                       <i class="fa fa-envelope"></i>
                     </span>
                   </div>
-                  <p class="help is-danger" v-if="error.email">{{ error.msg }}</p>
                 </div>
                 <div class="field">
                   <label class="label">Lozinka</label>
                   <div class="control has-icons-left">
-                    <input class="input" type="password" placeholder="********" required
-                          :class="{'is-danger': error.password}" v-model="form.password">
+                    <input class="input" type="password" placeholder="********" required v-model="form.password">
                     <span class="icon is-small is-left">
                       <i class="fa fa-lock"></i>
                     </span>
@@ -69,21 +66,22 @@ export default {
   methods: {
     async login () {
       try {
-        await AuthenticationService.login({
+        const response = await AuthenticationService.login({
           email: this.form.email,
           password: this.form.password,
           remember: this.remember
         })
+        this.$store.dispatch('setToken', response.data.token)
+        this.$store.dispatch('setUser', response.data.user)
       } catch (error) {
+        console.log(this.error.failedLogin)
         this.error.failedLogin = true
         this.error.msg = error.response.data.error
       }
     },
     resetErrors () {
-      this.error.email = false
-      this.error.password = false
-      this.error.remember = false
       this.error.msg = ''
+      this.error.failedLogin = false
     }
   }
 }
