@@ -19,6 +19,7 @@
           </div>
           <div class="navbar-end" v-if="$store.state.isUserLoggedIn">
             <router-link to="/postavke" tag="a" class="navbar-item">Postavke</router-link>
+             <a class="navbar-item" @click="logout">Odjava</a>
           </div>
           
         </div>
@@ -32,7 +33,21 @@ export default {
   name: 'Header',
   data () {
     return {
-      msg: 'Welcome to Your Vue.js App'
+    }
+  },
+  methods: {
+    logout() {
+      this.$store.dispatch('setToken', null)
+      this.$store.dispatch('setUser', null)
+      this.$toast.open({
+        duration: 5000,
+        message: 'Odjava je uspješna. Hvala na posjeti!',
+        position: 'is-bottom',
+        type: 'is-danger'
+      })
+      this.$router.push({
+        path: 'prijava'
+      })
     }
   }
 }

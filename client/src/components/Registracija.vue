@@ -1,53 +1,48 @@
-
 <template>
-  <section class="hero is-light is-fullheight">
-      <div class="hero-body">
-        <div class="container">
-          <div class="columns is-centered">
-            <div class="column is-5-tablet is-4-desktop is-3-widescreen">
-              <form class="box">
-                <div class="field">
-                  <label class="label">Email</label>
-                  <div class="control has-icons-left">
-                    <input class="input" type="email" placeholder="e.g. ime.prezime@bhtelecom.ba" required
-                          :class="{'is-danger': error.email}" v-model="form.email">
-                    <span class="icon is-small is-left">
-                      <i class="fa fa-envelope"></i>
-                    </span>
-                  </div>
-                  <p class="help is-danger" v-if="error.email">{{ error.msg }}</p>
-                </div>
-                <div class="field">
-                  <label class="label">Lozinka</label>
-                  <div class="control has-icons-left">
-                    <input class="input" type="password" placeholder="********" required
-                          :class="{'is-danger': error.password}" v-model="form.password">
-                    <span class="icon is-small is-left">
-                      <i class="fa fa-lock"></i>
-                    </span>
-                  </div>
-                  <p class="help is-danger" v-if="error.password">{{ error.msg }}</p>
-                  <p class="help is-danger" v-if="error.default">{{ error.msg }}</p>
-                </div>
-                <div class="field">
-                  <button class="button is-success" @click="newUser">
-                    Registruj se!
-                  </button>
-                </div>
-              </form>
-            </div>
-          </div>
-        </div>
+<div>
+  <panel>    
+    <div class="field">
+      <label class="label">Email</label>
+      <div class="control has-icons-left">
+        <input class="input" type="email" placeholder="e.g. ime.prezime@bhtelecom.ba" required
+          :class="{'is-danger': error.email}" v-model="form.email">
+        <span class="icon is-small is-left">
+          <i class="fa fa-envelope"></i>
+        </span>
       </div>
-    </section>
+      <p class="help is-danger" v-if="error.email">{{ error.msg }}</p>
+    </div>
+  
+    <div class="field">
+      <label class="label">Lozinka</label>
+      <div class="control has-icons-left">
+        <input class="input" type="password" placeholder="********" required
+          :class="{'is-danger': error.password}" v-model="form.password">
+        <span class="icon is-small is-left">
+          <i class="fa fa-lock"></i>
+        </span>
+      </div>
+      <p class="help is-danger" v-if="error.password">{{ error.msg }}</p>
+      <p class="help is-danger" v-if="error.default">{{ error.msg }}</p>
+    </div>
+
+    <div class="field">
+      <button class="button is-success" @click="newUser">Registruj se!</button>
+    </div>
+  </panel>  
+</div> 
 </template>
 
 <script>
 
 import AuthenticationService from '@/services/AuthenticationService'
+import Panel from '@/components/layout/Panel'
 
 export default {
   name: 'Registracija',
+  components: {
+    Panel
+  },
   data () {
     return {
       form: {
