@@ -9,4 +9,6 @@ module.exports = function (app) {
   app.post('/prijava',
     AuthenticationControllerPolicy.login,
     AuthenticationController.login);
+
+  app.get('/klijenti');
 };

@@ -6,12 +6,18 @@
 </template>
 
 <script>
+
+import Customers from '@/services/CustomersService'
+
 export default {
   name: 'Naplata',
   data () {
     return {
-      msg: 'Welcome to Your Vue.js App'
+      customers: null
     }
+  },
+  async mounted() {
+    this.customers = await Customers.index()
   }
 }
 </script>
