@@ -18,8 +18,8 @@ module.exports = {
         token: jwtSignUser(user.toJSON())
       });
     } catch (error) {
-      res.status(400).send({
-        error: 'Uneseni email postoji u bazi podataka'
+      res.status(500).send({
+        error: 'Korisnik postoji. Molimo unesite drugu email adresu'
       });
     }
   },
@@ -34,7 +34,7 @@ module.exports = {
       });
       if (!user) {
         return res.status(403).send({
-          error: 'Email adresa nije validna.'
+          error: 'Uneseni podaci nisu ispravni'
         });
       }
 
@@ -42,7 +42,7 @@ module.exports = {
 
       if (!isPasswordValid) {
         return res.status(403).send({
-          error: 'Uneseni podaci nisu ispravni.'
+          error: 'Uneseni podaci nisu ispravni'
         });
       } else {
         res.send({

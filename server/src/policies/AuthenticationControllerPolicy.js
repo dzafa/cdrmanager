@@ -3,8 +3,8 @@ const Joi = require('joi');
 module.exports = {
   register (req, res, next) {
     const schema = {
-      email: Joi.string().email(),
-      password: Joi.string().min(2)
+      email: Joi.string().email().required(),
+      password: Joi.string().min(2).required()
     };
 
     const {error, value} = Joi.validate(req.body, schema);
@@ -37,8 +37,8 @@ module.exports = {
 
   login (req, res, next) {
     const schema = {
-      email: Joi.string().email(),
-      password: Joi.string().min(2)
+      email: Joi.string().email().required(),
+      password: Joi.string().min(2).required()
     };
 
     const {error, value} = Joi.validate(req.body, schema);
