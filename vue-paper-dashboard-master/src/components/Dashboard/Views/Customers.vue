@@ -16,17 +16,16 @@
       </stats-card>
     </div>
   </div>
-
-    <div class="row">
-      <div class="col-md-12">
-        <div class="card">
-          <b-table hover
-             :items="items"
-             :fields="fields">
-          </b-table>
-        </div>
+  <div class="row">
+    <div class="col-md-12">
+      <div class="card">
+        <b-table hover
+            :items="items"
+            :fields="fields">
+        </b-table>
       </div>
     </div>
+  </div>
   </div>
 </template>
 <script>
@@ -90,7 +89,7 @@
             icon: 'ti-wallet',
             title: 'Prihod',
             value: '1,345 BAM',
-            footerText: 'Zadnji mijesec',
+            footerText: 'Zadnji mjesec',
             footerIcon: 'ti-calendar'
           }
         ]
@@ -98,11 +97,13 @@
     },
     async mounted () {
       this.items = (await Customers.index()).data
-      this.statsCards[0].value = this.items.length
+      this.statsCards[0].value = this.items.length ? this.items.length : this.items.length = 0
     }
   }
-
 </script>
-<style>
+<style scoped>
 
+.text-center {
+    text-align: left; 
+}
 </style>

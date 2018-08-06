@@ -7,7 +7,7 @@
     <!-- -->
     <div class="sidebar-wrapper" id="style-3">
       <div class="logo">
-        <a href="#" class="simple-text"><img src="static/img/logo2.png" alt="" height="45" width="105">
+        <a href="#" class="simple-text"><img src="static/img/logo2.png" alt="" height="60" width="140">
         </a>
       </div>
       <slot>

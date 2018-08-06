@@ -15,6 +15,7 @@ import TableList from 'src/components/Dashboard/Views/TableList.vue'
 // BH Telecom
 import Customers from 'src/components/Dashboard/Views/Customers.vue'
 import Login from 'src/components/Dashboard/Views/Login.vue'
+import Registration from 'src/components/Dashboard/Views/Registration.vue'
 
 const routes = [
   {
@@ -23,8 +24,12 @@ const routes = [
     redirect: '/admin/overview'
   },
   {
-    path: '/prijava',
-    component: Login
+    component: Login,
+    path: '/prijava'
+  },
+  {
+    component: Registration,
+    path: '/registracija'
   },
   {
     path: '/klijenti',
