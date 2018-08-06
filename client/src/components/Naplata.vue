@@ -1,10 +1,11 @@
 <template>
-  <section class="hero is-light is-fullheight ">
-      <div class="hero-body">
-        <div class="container">
-          <div class="columns is-4 is-offset-8">         
-            <div class="box">
-              
+<div class="container">
+<div class="columns">
+  <div class="column is-3">
+    First column
+  </div>
+  <div class="column is-9">
+    <section class="hero is-light">
         <b-table
             :hoverable="true"
             :striped="true"
@@ -74,11 +75,10 @@
             </article>
         </template>
         </b-table>
-          </div>
-          </div>
-        </div>
-      </div>
     </section>
+  </div>
+</div>
+ </div>
 </template>
 
 <script>
@@ -107,3 +107,18 @@ export default {
 }
 
 </script>
+
+<style >
+.container {
+    max-width: 1152px;
+    width: 1152px;
+}
+.container {
+    margin: 0 auto;
+    position: relative;
+}
+.column.is-9, .column.is-9-tablet {
+    flex: none;
+    width: 75%;
+}
+</style>

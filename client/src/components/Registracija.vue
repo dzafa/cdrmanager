@@ -67,6 +67,15 @@ export default {
         })
         this.$store.dispatch('setToken', response.data.token)
         this.$store.dispatch('setUser', response.data.user)
+
+        this.$toast.open({
+          message: 'Uspješno ste se registrovali. Prebacujemo vas na početnu stranicu.',
+          type: 'is-success'
+        })
+        this.$router.push({
+          path: 'naplata'
+        })
+
         this.form.email = ''
         this.form.password = ''
       } catch (error) {

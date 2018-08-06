@@ -1,18 +1,17 @@
 <template>
-  <div class="hero-head ">
-    <nav class="navbar is-dark is-fixed-top">
+    <nav class="navbar is-dark">
       <div class="container">
         <div class="navbar-brand" >
           <div class="navbar-item">
              <a href="#" style="padding:0px; margin:0px"><img src="../assets/bht-mini.jpg" ></a>
           </div>
-          <span class="navbar-burger burger" data-target="navbarMenuHeroA">
+          <span class="navbar-burger burger">
             <span aria-hidden="true"></span>
             <span aria-hidden="true"></span>
             <span aria-hidden="true"></span>
           </span>
         </div>
-        <div id="navbarMenuHeroA" class="navbar-menu">
+        <div class="navbar-menu">
           <div class="navbar-end" v-if="!$store.state.isUserLoggedIn">
             <router-link to="/prijava" tag="a" class="navbar-item">Prijava</router-link>
             <router-link to="/registracija" tag="a" class="navbar-item">Registracija</router-link>
@@ -21,11 +20,9 @@
             <router-link to="/postavke" tag="a" class="navbar-item">Postavke</router-link>
              <a class="navbar-item" @click="logout">Odjava</a>
           </div>
-          
         </div>
       </div>
     </nav>
-  </div>
 </template>
 
 <script>
@@ -58,4 +55,5 @@ export default {
   .home {
     cursor: pointer;
   }
+
 </style>

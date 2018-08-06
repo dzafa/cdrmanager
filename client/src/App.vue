@@ -68,4 +68,7 @@ a {
     background-color: #e88712;
     color: whitesmoke;
 }
+.body {
+    background-color: whitesmoke;
+}
 </style>
