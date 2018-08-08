@@ -3,9 +3,8 @@
     <side-bar type="sidebar" :sidebar-links="notLoggedInsidebarLinks">
     
     </side-bar>
-    <notifications>
 
-    </notifications>
+    
     <div class="main-panel">
        <nav class="navbar navbar-default">
     <div class="container-fluid">
@@ -29,28 +28,40 @@
     <div class="col-md-6 col-xs-2">
       <div class="card">
       <div class="content">
-            <b-form @submit="onSubmit" @reset="onReset" v-if="show">
+
+        <div class="alert alert-danger" role="alert" v-if="error.failedLogin">
+          {{ error.msg }}
+        </div>
+            <b-form @submit="login" v-if="show">
       <b-form-group id="exampleInputGroup1"
                     label="Email"
                     label-for="exampleInput1">
-        <b-form-input id="exampleInput1"
+        <b-form-input id="email"
                       type="email"
                       v-model="form.email"
                       required
                       placeholder="e.g. ime.prezime@bhtelecom.ba">
         </b-form-input>
       </b-form-group>
-      <b-form-group id="exampleInputGroup2"
+      <b-form-group id="password"
                     label="Lozinka"
                     label-for="exampleInput2">
         <b-form-input id="exampleInput2"
-                      type="text"
-                      v-model="form.name"
+                      type="password"
+                      v-model="form.password"
                       required
-                      placeholder="Lozinka">
+                      placeholder="********">
         </b-form-input>
       </b-form-group>
-      <b-button type="submit" variant="success">Prijava</b-button>
+      <b-form-group id="password">
+       <b-form-checkbox id="checkbox1"
+                     v-model="checked"
+                     value="accepted"
+                     unchecked-value="false">
+       Zapamti me
+    </b-form-checkbox> </b-form-group>
+      <b-button type="submit" variant="success" >Prijava</b-button>
+     
     </b-form>
       </div></div>
     </div>
@@ -66,27 +77,33 @@
   import TopNavbar from 'components/Dashboard/Layout/TopNavbar.vue'
   import ContentFooter from 'components/Dashboard/Layout/ContentFooter.vue'
   import DashboardContent from 'components/Dashboard/Layout/Content.vue'
+  import AuthenticationService from 'services/AuthenticationService'
+
   export default {
     data () {
       return {
         form: {
           email: '',
-          name: '',
-          food: null,
+          password: '',
           checked: []
         },
-        foods: [
-          { text: 'Select One', value: null },
-          'Carrots', 'Beans', 'Tomatoes', 'Corn'
-        ],
         show: true,
         notLoggedInsidebarLinks: [
           {
             name: 'Prijava',
             icon: 'ti-lock',
             path: '/prijava'
+          },
+          {
+            name: 'Registracija',
+            icon: 'ti-user',
+            path: '/registracija'
           }
-        ]
+        ],
+        error: {
+          failedLogin: false,
+          msg: ''
+        }
       }
     },
     components: {
@@ -100,20 +117,26 @@
           this.$sidebar.displaySidebar(false)
         }
       },
-      onSubmit (evt) {
-        evt.preventDefault()
-        alert(JSON.stringify(this.form))
+      async login () {
+        try {
+          const response = await AuthenticationService.login({
+            email: this.form.email,
+            password: this.form.password,
+            remember: this.remember
+          })
+          // this.$store.dispatch('setToken', response.data.token)
+          // this.$store.dispatch('setUser', response.data.user)
+          this.$router.push({
+            path: 'klijenti/lista'
+          })
+        } catch (error) {
+          this.error.failedLogin = true
+          this.error.msg = error.response.data.error
+        }
       },
-      onReset (evt) {
-        evt.preventDefault()
-        /* Reset our form values */
-        this.form.email = ''
-        this.form.name = ''
-        this.form.food = null
-        this.form.checked = []
-        /* Trick to reset/clear native browser form validation state */
-        this.show = false
-        this.$nextTick(() => { this.show = true })
+      resetErrors () {
+        this.error.msg = ''
+        this.error.failedLogin = false
       }
     }
   }
@@ -125,7 +148,4 @@
   .fade-leave-active {
     transition: opacity .1s
   }
-
-
-
 </style>

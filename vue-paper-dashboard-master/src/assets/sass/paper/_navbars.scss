@@ -73,14 +73,14 @@
     > li > a:not(.btn):focus {
       background-color: transparent;
       border-radius: 3px;
-      color: $info-color;
+      color: #f1882c;
       @include opacity(1);
     }
 
     > .dropdown > a:hover .caret,
     > .dropdown > a:focus .caret {
-      border-bottom-color: $info-color;
-      border-top-color: $info-color;
+      border-bottom-color: #f1882c;
+      border-top-color: #f1882c;
 
     }
 
@@ -98,8 +98,8 @@
   }
 
   &:not(.navbar-transparent) .btn-default:hover {
-    color: $info-color;
-    border-color: $info-color;
+    color: #f1882c;
+    border-color:#f1882c;
   }
   &:not(.navbar-transparent) .btn-neutral,
   &:not(.navbar-transparent) .btn-neutral:hover,

@@ -12,6 +12,12 @@
   export default {}
 
 </script>
-<style>
+<style scoped>
+a {
+    color: #b1b1b1;
+}
 
+a:hover {
+    color: #f1882c;
+}
 </style>

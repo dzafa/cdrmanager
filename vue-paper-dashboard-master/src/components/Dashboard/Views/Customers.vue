@@ -75,7 +75,7 @@
             sortable: true
           }
         ],
-        items: '',
+        items: [],
         statsCards: [
           {
             type: 'info',

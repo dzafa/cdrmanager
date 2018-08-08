@@ -6,12 +6,12 @@ const SidebarStore = {
     {
       name: 'Klijenti',
       icon: 'ti-wallet',
-      path: '/klijenti'
+      path: '/klijenti/lista'
     },
     {
       name: 'Sap',
       icon: 'ti-package',
-      path: '/admin/overview'
+      path: '/sap/lista'
     },
     {
       name: 'Generator',

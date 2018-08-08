@@ -12,12 +12,11 @@
       </div>
       <div class="navbar-right-menu">
         <ul class="nav navbar-nav navbar-right">
-          <li class="dropdown navbar-user">
-					<a href="" class="dropdown-toggle" data-toggle="dropdown">
-						<img src="static/img/user-13.jpg" alt="" /> 
-						<span class="d-none d-md-inline">Adnan Džaferović</span> <b class="caret"></b>
-          </a>
-        </li>
+        <drop-down title="Adnan Dzaferovic" icon="ti-settings">
+          <li><a href="#">Postavke</a></li>
+          <div class="divider"></div>
+          <li><a @click="logout">Odjava</a></li>
+        </drop-down>
         </ul>
       </div>
     </div>
@@ -51,6 +50,11 @@
       },
       hideSidebar () {
         this.$sidebar.displaySidebar(false)
+      },
+      logout () {
+        this.$router.push({
+          path: '/prijava'
+        })
       }
     }
   }
@@ -67,5 +71,13 @@
 
 .f-s-14 {
     font-size: 14px!important;
+}
+
+a {
+    color: #b1b1b1;
+}
+
+a:hover {
+    color: #f1882c;
 }
 </style>

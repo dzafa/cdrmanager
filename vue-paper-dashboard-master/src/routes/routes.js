@@ -14,6 +14,7 @@ import TableList from 'src/components/Dashboard/Views/TableList.vue'
 
 // BH Telecom
 import Customers from 'src/components/Dashboard/Views/Customers.vue'
+import Sap from 'src/components/Dashboard/Views/Sap.vue'
 import Login from 'src/components/Dashboard/Views/Login.vue'
 import Registration from 'src/components/Dashboard/Views/Registration.vue'
 
@@ -40,6 +41,18 @@ const routes = [
         path: 'lista',
         name: 'Lista klijenata',
         component: Customers
+      }
+    ]
+  },
+  {
+    path: '/sap',
+    component: DashboardLayout,
+    redirect: '/sap/lista',
+    children: [
+      {
+        path: 'lista',
+        name: 'Sap šifre',
+        component: Sap
       }
     ]
   },

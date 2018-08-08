@@ -27,7 +27,7 @@
     </div>
 
     <div class="field">
-      <button class="button is-success" @click="newUser">Registruj se!</button>
+      <button class="button is-success">Registruj se!</button>
     </div>
   </panel>  
 </div> 
