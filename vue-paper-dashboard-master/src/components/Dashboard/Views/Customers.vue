@@ -1,7 +1,46 @@
 <template>
 <div>
   <div class="row">
-    <div class="col-lg-4 col-sm-6" v-for="stats in statsCards">
+     <div class="col-md-9">
+      <div class="card">
+        <b-table striped
+            :items="items"
+            :fields="fields">
+        <template slot="id" slot-scope="data">
+          {{data.item.id}}
+        </template>
+        <template slot="name" slot-scope="data">
+          <a style="color: #777;" href="#">{{data.item.name}}</a>
+        </template>
+        <template slot="contract_number" slot-scope="data">
+          {{data.item.contract_number}}
+        </template>
+        <template slot="cdr_number" slot-scope="data">
+          {{data.item.cdr_number}}
+        </template>
+        <template slot="services_type" slot-scope="data">
+          {{data.item.services_type}}
+        </template>
+        <template slot="updatedAt" slot-scope="data">
+          {{data.item.updatedAt}}
+        </template>
+        <template slot=" " slot-scope="data">
+          <a style="color: #f1882c;" href="javascript:void(0)" title="Izmjena">
+            <i class="glyphicon glyphicon-pencil"></i>
+          </a>  
+          <a style="color: #f1882c;" href="javascript:void(0)" title="Brisanje">
+            <i class="glyphicon glyphicon-trash"></i>
+          </a>
+        </template>
+        </b-table>
+      </div>
+    </div>
+    <div class="col-lg-3 col-sm-16" >
+    
+    
+    <a href="#" class="btn btn-success btn-lg btn-block">+ <span class="ti-user"></span> Korisnik</a>
+    <br></div>
+    <div class="col-lg-3 col-sm-12" v-for="stats in statsCards">
       <stats-card>
         <div class="icon-big text-center" :class="`icon-${stats.type}`" slot="header">
           <i :class="stats.icon"></i>
@@ -15,16 +54,10 @@
         </div>
       </stats-card>
     </div>
+    
   </div>
   <div class="row">
-    <div class="col-md-12">
-      <div class="card">
-        <b-table hover
-            :items="items"
-            :fields="fields">
-        </b-table>
-      </div>
-    </div>
+   
   </div>
   </div>
 </template>
@@ -69,11 +102,7 @@
             label: 'Zadnja promijena',
             sortable: true
           },
-          {
-            key: 'bht_support_contact',
-            label: 'TM',
-            sortable: true
-          }
+          ' '
         ],
         items: [],
         statsCards: [
