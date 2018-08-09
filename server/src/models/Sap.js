@@ -1,12 +1,13 @@
 
 module.exports = (sequelize, DataTypes) => {
   return sequelize.define('Sap', {
-    external_code: {
+    service_name: {
       type: DataTypes.STRING,
       allowNull: false
     },
-    service_name: {
+    external_code: {
       type: DataTypes.STRING,
+      unique: true,
       allowNull: false
     },
     service_type_code: {
@@ -15,11 +16,17 @@ module.exports = (sequelize, DataTypes) => {
     },
     billing_frequency: {
       type: DataTypes.STRING,
-      allowNull: false
+      allowNull: false,
+      validate: {
+        isIn: [['jednokratno', 'sat', 'dan', 'mjesec']]
+      }
     },
     price: {
-      type: DataTypes.DECIMAL,
-      allowNull: false
+      type: DataTypes.STRING,
+      allowNull: false,
+      validate: {
+        isNumeric: true
+      }
     }
   });
 };

@@ -3,14 +3,14 @@
   <div class="row">
      <div class="col-md-9">
       <div class="card">
-        <b-table striped
+        <b-table
             :items="items"
             :fields="fields">
         <template slot="id" slot-scope="data">
           {{data.item.id}}
         </template>
         <template slot="name" slot-scope="data">
-          <a style="color: #777;" href="#">{{data.item.name}}</a>
+          {{data.item.name}}
         </template>
         <template slot="contract_number" slot-scope="data">
           {{data.item.contract_number}}
@@ -25,19 +25,13 @@
           {{data.item.updatedAt}}
         </template>
         <template slot=" " slot-scope="data">
-          <a style="color: #f1882c;" href="javascript:void(0)" title="Izmjena">
-            <i class="glyphicon glyphicon-pencil"></i>
-          </a>  
-          <a style="color: #f1882c;" href="javascript:void(0)" title="Brisanje">
-            <i class="glyphicon glyphicon-trash"></i>
-          </a>
+         <a class="btn btn-warning btn-xs "><i class="glyphicon glyphicon-pencil"></i></a>
+         <a class="btn btn-warning btn-xs "><i class="glyphicon glyphicon-trash"></i></a>
         </template>
         </b-table>
       </div>
     </div>
     <div class="col-lg-3 col-sm-16" >
-    
-    
     <a href="#" class="btn btn-success btn-lg btn-block">+ <span class="ti-user"></span> Korisnik</a>
     <br></div>
     <div class="col-lg-3 col-sm-12" v-for="stats in statsCards">
@@ -134,5 +128,12 @@
 
 .text-center {
     text-align: left; 
+}
+
+i.fa {
+  display: none;
+}
+td:hover i.fa {
+  display: inline-block;
 }
 </style>
