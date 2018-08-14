@@ -12,21 +12,22 @@ import App from './App'
 import routes from './routes/routes'
 
 // library imports
+import BootstrapVue from 'bootstrap-vue'
 import Chartist from 'chartist'
 import 'bootstrap/dist/css/bootstrap.css'
 import './assets/sass/paper-dashboard.scss'
 import 'es6-promise/auto'
-import BootstrapVue from 'bootstrap-vue'
 import 'bootstrap-vue/dist/bootstrap-vue.css'
+import { VudalPlugin } from 'vudal'
 
 // plugin setup
+Vue.use(BootstrapVue)
 Vue.use(VueRouter)
 Vue.use(GlobalComponents)
 Vue.use(vClickOutside)
 Vue.use(Notifications)
 Vue.use(SideBar)
-Vue.use(BootstrapVue)
-
+Vue.use(VudalPlugin)
 // configure router
 const router = new VueRouter({
   routes, // short for routes: routes
