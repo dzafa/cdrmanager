@@ -19,6 +19,7 @@ import './assets/sass/paper-dashboard.scss'
 import 'es6-promise/auto'
 import 'bootstrap-vue/dist/bootstrap-vue.css'
 import { VudalPlugin } from 'vudal'
+import Vuelidate from 'vuelidate'
 
 // plugin setup
 Vue.use(BootstrapVue)
@@ -28,6 +29,8 @@ Vue.use(vClickOutside)
 Vue.use(Notifications)
 Vue.use(SideBar)
 Vue.use(VudalPlugin)
+Vue.use(Vuelidate)
+
 // configure router
 const router = new VueRouter({
   routes, // short for routes: routes

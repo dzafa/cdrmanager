@@ -18,4 +18,5 @@ module.exports = function (app) {
 
   app.get('/sap', SapController.index);
   app.post('/sap', SapController.post);
+  app.delete('/sap/:id', SapController.delete);
 };
