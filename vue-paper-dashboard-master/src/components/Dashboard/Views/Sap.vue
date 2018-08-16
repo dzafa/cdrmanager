@@ -77,23 +77,19 @@
       </div>
       <b-form >
       
-      <b-form-group id="external_code"
+      <b-form-group :class="{ 'error': $v.forms.external_code.$error }" id="external_code"
         label="Eksterna šifra"
         label-for="external_code">
-        
         <b-form-input id="external_code"
           type="text"
-          v-model="forms.external_code"
-          :state="!$v.forms.external_code.$invalid"
-          aria-describedby="input1LiveFeedback"
-          placeholder="Sap šifra">
+          v-model.trim="forms.external_code"
+          required>
         </b-form-input>
-      <b-form-invalid-feedback id="input1LiveFeedback">
-        This is a required field and must be at least 3 characters
-      </b-form-invalid-feedback>
+      <div class="error" v-if="!$v.forms.external_code.minLength">Minimalno 3 karaktera</div>
+      <div class="error" v-if="!$v.forms.external_code.numeric">Samo numericki znakovi su dozvoljeni</div>
       </b-form-group>
 
-      <b-form-group id="service_name"
+      <b-form-group :class="{ 'error': $v.forms.service_name.$error }" id="service_name"
       label="Naziv"
       label-for="service_name">
       <b-form-input id="service_name"
@@ -101,6 +97,8 @@
         v-model.trim="forms.service_name"
         required>
       </b-form-input>
+      <div class="error" v-if="!$v.forms.service_name.minLength">Minimalno 3 karaktera</div>
+      <div class="error" v-if="!$v.forms.service_name.maxLength">Maksinalno 200 karaktera</div>
       </b-form-group>
       
      <b-form-group id="service_type_code"
@@ -142,9 +140,7 @@
       Aktivno?
     </b-form-checkbox><br/>
 <div class="actions">
-      <b-button type="submit" variant="success" @click="newSap">Spasi</b-button>
-      
-    
+      <b-button :disabled="$v.$invalid" type="submit" variant="success" @click="newSap">Spasi</b-button>
        <b-button class="cancel vudal-btn" variant="danger">Zatvori</b-button>
     </div> 
     </b-form>
@@ -168,8 +164,7 @@
         label-for="external_code">
         <b-form-input disabled id="external_code"
           type="text"
-          v-model="forms.external_code"
-          required>
+          v-model.trim="forms.external_code">
         </b-form-input>
      
       </b-form-group>
@@ -240,7 +235,7 @@ import Sap from 'services/SapService'
 import Vudal from 'vudal'
 import swal from 'sweetalert'
 import { validationMixin } from 'vuelidate'
-import { required, email } from 'vuelidate/lib/validators'
+import { required, email, minLength, maxLength, numeric } from 'vuelidate/lib/validators'
 
 export default {
   components: {
@@ -295,13 +290,26 @@ export default {
       }
     }
   },
-  mixins: [
-    validationMixin
-  ],
   validations: {
     forms: {
       external_code: {
+        required,
+        numeric,
+        minLength: minLength(3)
+      },
+      service_name: {
+        required,
+        minLength: minLength(3),
+        maxLength: maxLength(200)
+      },
+      service_type_code: {
         required
+      },
+      billing_frequency: {
+        required
+      },
+      price: {
+        decimal
       }
     }
   },
@@ -359,7 +367,7 @@ export default {
     },
     cleanForm () {
       this.forms.service_name = ''
-      this.forms.external_code = ''
+      this.forms.external_code = null
       this.forms.service_type_code = ''
       this.forms.billing_frequency = ''
       this.forms.price = ''
@@ -385,11 +393,19 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
 .text-center {
     text-align: left; 
 }
 .card form {
      padding-left: 0px; 
 }
+
+
+.error {
+  border-color: red;
+  color: red;
+}
+
+
 </style>

@@ -20,7 +20,7 @@ import 'es6-promise/auto'
 import 'bootstrap-vue/dist/bootstrap-vue.css'
 import { VudalPlugin } from 'vudal'
 import Vuelidate from 'vuelidate'
-
+import { required, email } from 'vuelidate/lib/validators'
 // plugin setup
 Vue.use(BootstrapVue)
 Vue.use(VueRouter)
@@ -48,6 +48,7 @@ Object.defineProperty(Vue.prototype, '$Chartist', {
 new Vue({
   el: '#app',
   render: h => h(App),
+  validations: {},
   router,
   data: {
     Chartist: Chartist
