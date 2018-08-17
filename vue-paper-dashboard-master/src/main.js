@@ -14,13 +14,13 @@ import routes from './routes/routes'
 // library imports
 import BootstrapVue from 'bootstrap-vue'
 import Chartist from 'chartist'
-import 'bootstrap/dist/css/bootstrap.css'
+import 'bootstrap/dist/css/bootstrap.min.css'
 import './assets/sass/paper-dashboard.scss'
 import 'es6-promise/auto'
 import 'bootstrap-vue/dist/bootstrap-vue.css'
 import { VudalPlugin } from 'vudal'
 import Vuelidate from 'vuelidate'
-import { required, email } from 'vuelidate/lib/validators'
+
 // plugin setup
 Vue.use(BootstrapVue)
 Vue.use(VueRouter)

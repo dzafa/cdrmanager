@@ -27,6 +27,10 @@ module.exports = (sequelize, DataTypes) => {
       validate: {
         isNumeric: true
       }
+    },
+    active: {
+      type: DataTypes.BOOLEAN,
+      allowNull: false
     }
   });
 };

@@ -1,6 +1,22 @@
 <template>
-<div>
-  <div class="row">
+<div>  <div class="row">
+<div class="col-lg-3 col-sm-2">
+    <a href="#" class="btn btn-success btn-lg btn-block">+ <span class="ti-user"></span> Korisnik</a>
+    <br>
+     <stats-card v-for="stats in statsCards"> 
+        <div class="icon-big text-center" :class="`icon-${stats.type}`" slot="header">
+          <i :class="stats.icon"></i>
+        </div>
+        <div class="numbers" slot="content">
+          <p>{{stats.title}}</p>
+          {{stats.value}}
+        </div>
+        <div class="stats" slot="footer">
+          <i :class="stats.footerIcon"></i> {{stats.footerText}}
+        </div>
+      </stats-card>
+</div>
+
      <div class="col-md-9">
       <div class="card">
         <b-table
@@ -25,33 +41,16 @@
           {{data.item.updatedAt}}
         </template>
         <template slot=" " slot-scope="data">
-         <a class="btn btn-warning btn-xs "><i class="glyphicon glyphicon-pencil"></i></a>
-         <a class="btn btn-warning btn-xs "><i class="glyphicon glyphicon-trash"></i></a>
+            <b-button placeholder="Izbriši" size="sm" class="mr-1">
+              <i class="glyphicon glyphicon-pencil"></i>
+            </b-button>
+           <b-button placeholder="Izbriši" size="sm"  class="mr-1">
+              <i class="glyphicon glyphicon-trash"></i>
+            </b-button>
         </template>
         </b-table>
       </div>
-    </div>
-    <div class="col-lg-3 col-sm-16" >
-    <a href="#" class="btn btn-success btn-lg btn-block">+ <span class="ti-user"></span> Korisnik</a>
-    <br></div>
-    <div class="col-lg-3 col-sm-12" v-for="stats in statsCards">
-      <stats-card>
-        <div class="icon-big text-center" :class="`icon-${stats.type}`" slot="header">
-          <i :class="stats.icon"></i>
-        </div>
-        <div class="numbers" slot="content">
-          <p>{{stats.title}}</p>
-          {{stats.value}}
-        </div>
-        <div class="stats" slot="footer">
-          <i :class="stats.footerIcon"></i> {{stats.footerText}}
-        </div>
-      </stats-card>
-    </div>
-    
-  </div>
-  <div class="row">
-   
+  </div>   
   </div>
   </div>
 </template>
