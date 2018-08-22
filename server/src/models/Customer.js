@@ -33,6 +33,9 @@ module.exports = (sequelize, DataTypes) => {
     postcode: {
       type: DataTypes.INTEGER
     },
+    logo: {
+      type: DataTypes.STRING
+    },
     services_type: {
       type: DataTypes.INTEGER,
       allowNull: false

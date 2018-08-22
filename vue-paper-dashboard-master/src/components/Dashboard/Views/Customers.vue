@@ -1,7 +1,7 @@
 <template>
 <div>  <div class="row">
 <div class="col-lg-3 col-sm-2">
-    <a href="#" class="btn btn-success btn-lg btn-block">+ <span class="ti-user"></span> Korisnik</a>
+    <a href="#" @click.prevent="$modals.myModal.$show()" class="btn btn-success btn-lg btn-block">+ <span class="ti-user"></span> Korisnik</a>
     <br>
      <stats-card v-for="stats in statsCards"> 
         <div class="icon-big text-center" :class="`icon-${stats.type}`" slot="header">
@@ -52,18 +52,49 @@
       </div>
   </div>   
   </div>
+   <vudal name="myModal">
+  <div class="header">
+    <i class="close icon"></i>
+    Title
+  </div>
+  <div class="content">
+     <picture-input 
+      ref="pictureInput"
+      margin="16" 
+      width=-9
+      accept="image/jpeg,image/png" 
+      size="10" 
+      button-class="btn"
+      :custom-strings="{
+        upload: '<h1>Bummer!</h1>',
+        drag: 'Drag a 😺 GIF or GTFO'
+      }"
+      @change="onChange">
+    </picture-input>
+    
+  </div>
+  <div class="actions">
+    <div class="ui cancel button">Cancel</div>
+    <div class="ui button">Ok</div>
+  </div>
+</vudal>
   </div>
 </template>
 <script>
   import StatsCard from 'components/UIComponents/Cards/StatsCard.vue'
   import Customers from 'services/CustomersService'
-
+  import Vudal from 'vudal'
+  import PictureInput from 'vue-picture-input'
   export default {
     components: {
-      StatsCard
+      StatsCard,
+      PictureInput,
+      Vudal
     },
     data () {
       return {
+        previewHeight: 500,
+        previewWidth: 500,
         fields: [
           {
             key: 'id',
@@ -120,12 +151,23 @@
     async mounted () {
       this.items = (await Customers.index()).data
       this.statsCards[0].value = this.items.length ? this.items.length : this.items.length = 0
+    },
+    methods: {
+      onChange (image) {
+        console.log('Novi logo izabran!')
+        if (image) {
+          console.log('Slika učitana.')
+          this.image = image
+        } else {
+          console.log('Nije podržano!')
+        }
+      }
     }
   }
 </script>
 <style scoped>
 
-.text-center {
+.text.center {
     text-align: left; 
 }
 
