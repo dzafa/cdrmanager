@@ -16,7 +16,6 @@
         </div>
       </stats-card>
 </div>
-
      <div class="col-md-9">
       <div class="card">
         <b-table
@@ -52,49 +51,130 @@
       </div>
   </div>   
   </div>
-   <vudal name="myModal">
+
+  <vudal name="myModal">
   <div class="header">
     <i class="close icon"></i>
-    Title
+    Novi klijent
   </div>
   <div class="content">
-     <picture-input 
+    <div class="row">
+    <div class="col-md-8 mb-3">
+      <b-form-group id="name" label="Naziv" label-for="name">
+        <b-form-input id="name" v-model.trim="forms.name" type="text" required></b-form-input>
+      </b-form-group>
+      <b-form-group id="contract_number" label="Broj ugovora" class="col-md-13" style="padding-left:0px;" label-for="contract_number">
+        <b-form-input id="contract_number" v-model.trim="forms.contract_number" type="text" required></b-form-input>
+      </b-form-group>
+      <b-form-group id="cdr_number" label="Cdr šifra" class="col-md-6" style="padding-left:0px;" label-for="cdr_number">
+        <b-form-input id="cdr_number" v-model.trim="forms.cdr_number" type="text" required></b-form-input>
+      </b-form-group>
+      <b-form-group id="request_number" label="Broj zahtjeva" class="col-md-5" label-for="request_number">
+        <b-form-input id="request_number" v-model.trim="forms.request_number" type="text" required></b-form-input>
+      </b-form-group>
+    </div>
+    <div class="col-md-4 mb-3" >
+      <picture-input 
       ref="pictureInput"
       margin="16" 
-      width=-9
       accept="image/jpeg,image/png" 
       size="10" 
       button-class="btn"
       :custom-strings="{
         upload: '<h1>Bummer!</h1>',
-        drag: 'Drag a 😺 GIF or GTFO'
+        drag: 'Dodaj logo'
       }"
       @change="onChange">
     </picture-input>
-    
+    </div>
+    <div class="col-md-12 mb-1">
+       <b-form-group id="address" label="Adresa" label-for="address">
+        <b-form-input id="address" v-model.trim="forms.address" type="text" required></b-form-input>
+      </b-form-group>
+         <b-form-group id="city"
+        label="Grad"
+        label-for="city">
+        <b-form-select v-model.trim="forms.city" class="mb-3">
+      <option :value="null">Izaberite</option>
+      <option value="SA">Sarajevo</option>
+      <option value="MO">Mostar</option>
+      </optgroup>
+    </b-form-select>
+  </b-form-group>
+      <b-form-group id="contact_person" label="Kontakt osoba" label-for="contact_person">
+        <b-form-input id="contact_person"  v-model.trim="forms.contact_person" type="text" required></b-form-input>
+      </b-form-group>
+     </div>
+     <div class="col-md-6 mb-3">
+      <b-form-group id="email" label="Email" label-for="email">
+        <b-form-input id="email" v-model.trim="forms.email" type="text" required></b-form-input>
+      </b-form-group>
+     </div>
+    <div class="col-md-6 mb-3">
+      <b-form-group id="contact_number" label="Telefon" label-for="contact_number">
+        <b-form-input id="contact_number" v-model.trim="forms.contact_number" type="text" required></b-form-input>
+      </b-form-group>
+     </div>
   </div>
-  <div class="actions">
-    <div class="ui cancel button">Cancel</div>
-    <div class="ui button">Ok</div>
+       <b-form-group id="services_type"
+        label="Vrsta usluge"
+        label-for="services_type">
+        <b-form-select  v-model.trim="forms.services_type"  class="mb-3">
+      <option :value="null">Izaberite</option>
+      <option value="EC">Enterprise Cloud</option>
+      <option value="PC">Private Cloud</option>
+      </optgroup>
+    </b-form-select>
+  </b-form-group>
+     <b-form-group id="bht_support_contact"
+        label="Tehnički kontakt BHT"
+        label-for="bht_support_contact">
+        <b-form-select v-model.trim="forms.bht_support_contact" class="mb-3">
+      <option :value="null">Izaberite</option>
+      <option value="adnandz">Adnan Dzaferovic</option>
+      <option value="jelenar">Jelena Radenkovic</option>
+      </optgroup>
+    </b-form-select>
+  </b-form-group>
   </div>
+ <div class="actions" style="text-align:left;">
+      <b-button type="submit" variant="success" @click="newClient">Spasi</b-button>
+       <b-button class="cancel vudal-btn" variant="danger">Zatvori</b-button>
+    </div> 
+
+    {{ forms }}
 </vudal>
+
   </div>
 </template>
 <script>
   import StatsCard from 'components/UIComponents/Cards/StatsCard.vue'
   import Customers from 'services/CustomersService'
-  import Vudal from 'vudal'
   import PictureInput from 'vue-picture-input'
+  import Vudal from 'vudal'
   export default {
     components: {
       StatsCard,
-      PictureInput,
-      Vudal
+      Vudal,
+      PictureInput
     },
     data () {
       return {
-        previewHeight: 500,
-        previewWidth: 500,
+        forms: {
+          name: '',
+          contract_number: '',
+          cdr_number: '',
+          request_number: '',
+          pictureInput: '',
+          address: '',
+          city: '',
+          contact_person: '',
+          email: '',
+          contact_number: '',
+          logo: '',
+          services_type: '',
+          bht_support_contact: ''
+        },
         fields: [
           {
             key: 'id',
@@ -158,15 +238,39 @@
         if (image) {
           console.log('Slika učitana.')
           this.image = image
+          console.log(image)
         } else {
           console.log('Nije podržano!')
+        }
+      },
+      async newClient () {
+        try {
+          const response = await Customers.post({
+            contract_number: this.forms.contract_number,
+            name: this.forms.name,
+            cdr_number: this.forms.cdr_number,
+            request_number: this.forms.request_number,
+            logo: this.image,
+            address: this.forms.address,
+            city: this.forms.city,
+            contact_person: this.forms.contact_person,
+            email: this.forms.email,
+            contact_number: this.forms.contract_number,
+            services_type: this.forms.services_type,
+            bht_support_contact: this.forms.bht_support_contact
+          })
+          this.items = (await Customers.index()).data
+        } catch (error) {
+          this.error.msg = error.response.data.error
         }
       }
     }
   }
 </script>
 <style scoped>
-
+.text-center {
+    text-align: left; 
+}
 .text.center {
     text-align: left; 
 }
