@@ -14,9 +14,12 @@ module.exports = {
   },
   post (req, res) {
     try {
+      console.log(req.file);
+      /*
       Customers.create(req.body).then(customer => {
         res.send(customer);
       });
+      */
     } catch (error) {
       res.status(500).send({
         error: 'Greska prilikom kreiranja klijenta'

@@ -77,7 +77,7 @@
       <picture-input 
       ref="pictureInput"
       margin="16" 
-      accept="image/jpeg,image/png" 
+      accept="image/jpeg,image/png,image/gif" 
       size="10" 
       button-class="btn"
       :custom-strings="{
