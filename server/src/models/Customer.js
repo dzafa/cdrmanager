@@ -30,10 +30,14 @@ module.exports = (sequelize, DataTypes) => {
     city: {
       type: DataTypes.STRING
     },
-    logo: {
+    image: {
       type: DataTypes.STRING
     },
     services_type: {
+      type: DataTypes.INTEGER,
+      allowNull: false
+    },
+    contact_person: {
       type: DataTypes.INTEGER,
       allowNull: false
     },

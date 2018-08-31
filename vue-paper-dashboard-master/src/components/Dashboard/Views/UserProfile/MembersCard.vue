@@ -6,7 +6,7 @@
     <div class="content">
       <ul class="list-unstyled team-members">
         <li>
-          <div class="row" v-for="member in members">
+          <div class="row">
             <div class="col-xs-3">
               <div class="avatar">
                 <img :src="member.image" alt="Circle Image" class="img-circle img-no-padding img-responsive">
@@ -35,7 +35,7 @@
   export default {
     data () {
       return {
-        title: 'Team members',
+        title: 'Tehnički kontakt',
         members: [
           {
             image: 'static/img/faces/face-0.jpg',

@@ -20,7 +20,9 @@ import 'es6-promise/auto'
 import 'bootstrap-vue/dist/bootstrap-vue.css'
 import { VudalPlugin } from 'vudal'
 import Vuelidate from 'vuelidate'
+import moment from 'moment'
 
+Vue.prototype.moment = moment
 // plugin setup
 Vue.use(BootstrapVue)
 Vue.use(VueRouter)

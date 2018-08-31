@@ -1,108 +1,24 @@
 <template>
-  <div class="card">
-    <div class="header">
-      <h4 class="title">Edit Profile</h4>
-    </div>
-    <div class="content">
-      <form>
-        <div class="row">
-          <div class="col-md-5">
-            <fg-input type="text"
-                      label="Company"
-                      :disabled="true"
-                      placeholder="Paper dashboard"
-                      v-model="user.company">
-            </fg-input>
-          </div>
-          <div class="col-md-3">
-
-            <fg-input type="text"
-                      label="Username"
-                      placeholder="Username"
-                      v-model="user.username">
-            </fg-input>
-          </div>
-          <div class="col-md-4">
-            <fg-input type="email"
-                      label="Username"
-                      placeholder="Email"
-                      v-model="user.email">
-            </fg-input>
-          </div>
-        </div>
-
-        <div class="row">
-          <div class="col-md-6">
-            <fg-input type="text"
-                      label="First Name"
-                      placeholder="First Name"
-                      v-model="user.firstName">
-            </fg-input>
-          </div>
-          <div class="col-md-6">
-            <fg-input type="text"
-                      label="Last Name"
-                      placeholder="Last Name"
-                      v-model="user.lastName">
-            </fg-input>
-          </div>
-        </div>
-
-        <div class="row">
-          <div class="col-md-12">
-            <fg-input type="text"
-                      label="Address"
-                      placeholder="Home Address"
-                      v-model="user.address">
-            </fg-input>
-          </div>
-        </div>
-
-        <div class="row">
-          <div class="col-md-4">
-            <fg-input type="text"
-                      label="City"
-                      placeholder="City"
-                      v-model="user.city">
-            </fg-input>
-          </div>
-          <div class="col-md-4">
-            <fg-input type="text"
-                      label="Country"
-                      placeholder="Country"
-                      v-model="user.country">
-            </fg-input>
-          </div>
-          <div class="col-md-4">
-            <fg-input type="number"
-                      label="Postal Code"
-                      placeholder="ZIP Code"
-                      v-model="user.postalCode">
-            </fg-input>
-          </div>
-        </div>
-
-        <div class="row">
-          <div class="col-md-12">
-            <div class="form-group">
-              <label>About Me</label>
-              <textarea rows="5" class="form-control border-input"
-                        placeholder="Here can be your description"
-                        v-model="user.aboutMe">
-
-              </textarea>
-            </div>
-          </div>
-        </div>
-        <div class="text-center">
-          <button type="submit" class="btn btn-info btn-fill btn-wd" @click.prevent="updateProfile">
-            Update Profile
-          </button>
-        </div>
-        <div class="clearfix"></div>
-      </form>
-    </div>
-  </div>
+  <b-card no-body>
+  <div class="nav-tabs-custom">
+ <ul class="nav nav-tabs" id="myTab" role="tablist">
+  <li class="active">
+    <a id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Resursi</a>
+  </li>
+  <li >
+    <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Naplata</a>
+  </li>
+  <li>
+    <a class="nav-link" id="contact-tab" data-toggle="tab" href="#contact" role="tab" aria-controls="contact" aria-selected="false">Historija aktivnosti</a>
+  </li>
+</ul>
+<div class="tab-content" id="myTabContent">
+  <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">...</div>
+  <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">...</div>
+  <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">...</div>
+</div>
+</div>
+</b-card>
 </template>
 <script>
   export default {
@@ -129,5 +45,50 @@
 
 </script>
 <style>
+.nav-tabs-custom>.nav-tabs>li:first-of-type.active>a {
+    border-left-color: transparent;
+}
+.nav-tabs-custom>.nav-tabs>li.active>a {
+    border-top-color: transparent;
+    border-left-color: #f4f4f4;
+    border-right-color: #f4f4f4;
+}
+.nav-tabs-custom>.nav-tabs>li.active>a, .nav-tabs-custom>.nav-tabs>li.active:hover>a {
+    background-color: #fff;
+    color: #444;
+}
+.nav-tabs-custom>.nav-tabs>li>a, .nav-tabs-custom>.nav-tabs>li>a:hover {
+    background: transparent;
+    margin: 0;
+}
+.nav-tabs-custom>.nav-tabs>li>a {
+    color: #444;
+    border-radius: 0;
+}
+.nav-tabs-custom {
+    margin-bottom: 20px;
+    background: #fff;
+    box-shadow: 0 1px 1px rgba(0,0,0,0.1);
+    border-radius: 3px;
+}
+.nav-tabs-custom>.nav-tabs>li:first-of-type {
+    margin-left: 0;
+}
+.nav-tabs-custom>.nav-tabs>li.active {
+    border-top-color: #f1882c;
+}
+.nav-tabs-custom>.nav-tabs>li {
+    border-top: 3px solid transparent;
+    margin-bottom: -2px;
+    margin-right: 5px;
+}
+.nav-tabs>li {
+    float: left;
+    margin-bottom: -1px;
+}
+.nav>li {
+    position: relative;
+    display: block;
+}
 
 </style>

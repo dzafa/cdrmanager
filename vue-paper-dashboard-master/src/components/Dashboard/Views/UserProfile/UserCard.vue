@@ -1,23 +1,26 @@
 <template>
-  <div class="card card-user">
-    <div class="image">
-      <img src="static/img/background.jpg" alt="...">
-    </div>
+  <div class="card card-user" style=""><div class="shape">
+					<div class="shape-text">
+					153,00								
+					</div>
+				</div>
+    <div class="p-4 bg-dark">   
     <div class="content">
-      <div class="author">
-        <img class="avatar border-white" src="static/img/faces/face-2.jpg" alt="...">
-        <h4 class="title">Chet Faker
-          <br>
-          <a href="#">
-            <small>@chetfaker</small>
-          </a>
-        </h4>
-      </div>
-      <p class="description text-center">
-        "I like the way you work it
-        <br> No diggity
-        <br> I wanna bag it up"
-      </p>
+      <div class="author" style="padding-top:24px;"></div> 
+        <img class="avatar border-white" src="http://localhost:3000/static/images/clients/logo/image-1535629668916" alt="...">
+
+        
+      <h4 class="title">AS Grupacija 
+        </h4><b-badge variant="success">Aktivno</b-badge>
+        <b-badge variant="yellow">Enterprise Cloud</b-badge>
+        <br><br>
+       
+
+      <p><span class="glyphicon glyphicon-map-marker"></span> Trg Djeca Dobrinje 20/1, Sarajevo</p>
+      <p><span class="glyphicon glyphicon-phone"></span> +38762 121-931</p>
+      <p><span class="glyphicon glyphicon-envelope"></span> edin.hodzic@klas.ba</p>
+        </div>
+      
     </div>
     <hr>
     <div class="text-center">
@@ -28,7 +31,9 @@
             <small>{{info.subTitle}}</small>
           </h5>
         </div>
-      </div>
+      </div><hr>
+      
+    <br>
     </div>
   </div>
 </template>
@@ -39,15 +44,15 @@
         details: [
           {
             title: '12',
-            subTitle: 'Files'
+            subTitle: 'CPU'
           },
           {
             title: '2GB',
-            subTitle: 'Used'
+            subTitle: 'RAM'
           },
           {
-            title: '24,6$',
-            subTitle: 'Spent'
+            title: '24,6',
+            subTitle: 'DISK'
           }
         ]
       }
@@ -67,6 +72,40 @@
   }
 
 </script>
-<style>
-  
+<style scoped>
+  .badge-success {
+    color: #fff;
+    background-color: #28a745;
+}
+.shape {
+    border-style: solid;
+    border-width: 0 130px 60px 0;
+    float: right;
+    height:0px;
+    width:0px;
+    -ms-transform: rotate(360deg);
+    -o-transform: rotate(360deg);
+    -webkit-transform: rotate(360deg);
+    transform: rotate(360deg);
+}
+.offer-success .shape {
+    border-color: transparent #5cb85c transparent transparent;
+}
+.shape {
+    border-color: rgba(255,255,255,0) #28a745 rgba(255,255,255,0) rgba(255,255,255,0);
+}
+.shape-text {
+    color: #fff;
+    font-size: 15px;
+    font-weight: bold;
+    position: relative;
+    right: -70px;
+    top: 2px;
+    white-space: nowrap;
+    -ms-transform: rotate(30deg);
+    -o-transform: rotate(360deg);
+    -webkit-transform: rotate(30deg);
+    transform: rotate(25deg);
+}
+
 </style>
