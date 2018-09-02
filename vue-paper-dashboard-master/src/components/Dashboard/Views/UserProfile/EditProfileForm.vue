@@ -11,11 +11,73 @@
   <li>
     <a class="nav-link" id="contact-tab" data-toggle="tab" href="#contact" role="tab" aria-controls="contact" aria-selected="false">Historija aktivnosti</a>
   </li>
-</ul>
+</ul><div class="col-lg-12 col-sm-2">
+<div class="content" style="float:right">
+  
+    <br> <button type="button" class="btn btn-warning">+ Nova VM</button> </div></div>
+  <div class="content">
+      <div class="row">
+    <div class="col-lg-4 col-sm-2">
+    <b-card header="SQL Instanca"
+                header-tag="header"
+                footer="Centos 7"
+                footer-tag="footer"
+                title="">
+            <p class="card-text">172.30.2.12</p>
+               <hr>
+    <div class="text-center">
+      <div class="row">
+        <div v-for="(info,index) in details" :class="getClasses(index)">
+          <h6>{{info.title}}
+            <small>{{info.subTitle}}</small>
+          </h6>
+        </div>
+      </div></div>
+        </b-card>
+      </div>
+       <div class="col-lg-4 col-sm-2">
+    <b-card header="App1"
+                header-tag="header"
+                footer="Windows server 2016"
+                footer-tag="footer"
+                title="">
+            <p class="card-text">172.30.2.12</p>
+           <hr>
+    <div class="text-center">
+      <div class="row">
+        <div v-for="(info,index) in details" :class="getClasses(index)">
+          <h6>{{info.title}}
+            <small>{{info.subTitle}}</small>
+          </h6>
+        </div>
+      </div>
+  
+    </div>
+        </b-card>
+      </div>  <div class="col-lg-4 col-sm-2">
+    <b-card header="Backup test1"
+                header-tag="header"
+                footer="AIX"
+                footer-tag="footer"
+                title="">
+            <p class="card-text">172.30.2.12</p>
+            <hr>
+    <div class="text-center">
+      <div class="row">
+        <div v-for="(info,index) in details" :class="getClasses(index)">
+          <h6>{{info.title}}
+            <small>{{info.subTitle}}</small>
+          </h6>
+        </div>
+      </div></div>
+        </b-card>
+      </div>
+      </div>
 <div class="tab-content" id="myTabContent">
   <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">...</div>
   <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">...</div>
   <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">...</div>
+</div>
 </div>
 </div>
 </b-card>
@@ -24,6 +86,20 @@
   export default {
     data () {
       return {
+        details: [
+          {
+            title: '12',
+            subTitle: 'CPU'
+          },
+          {
+            title: '2GB',
+            subTitle: 'RAM'
+          },
+          {
+            title: '24,6',
+            subTitle: 'DISK'
+          }
+        ],
         user: {
           company: 'Paper Dashboard',
           username: 'michael23',
@@ -39,6 +115,16 @@
     methods: {
       updateProfile () {
         alert('Your data: ' + JSON.stringify(this.user))
+      },
+      getClasses (index) {
+        var remainder = index % 3
+        if (remainder === 0) {
+          return 'col-md-3 col-md-offset-1'
+        } else if (remainder === 2) {
+          return 'col-md-4'
+        } else {
+          return 'col-md-3'
+        }
       }
     }
   }
@@ -90,5 +176,34 @@
     position: relative;
     display: block;
 }
+.card-header:first-child {
+    border-radius: calc(.25rem - 1px) calc(.25rem - 1px) 0 0;
+}
 
+.card-header {
+    padding: 12px 20px;
+    padding: .75rem 1.25rem;
+    margin-bottom: 0;
+    background-color: rgba(0,0,0,.03);
+    border-bottom: 1px solid rgba(0,0,0,.125);
+}
+.card-footer:last-child {
+    border-radius: 0 0 calc(.25rem - 1px) calc(.25rem - 1px);
+}
+.card-footer {
+    padding: 12px 20px;
+    padding: .75rem 1.25rem;
+    background-color: rgba(0,0,0,.03);
+    border-top: 1px solid rgba(0,0,0,.125);
+}
+.card-body {
+    -ms-flex: 1 1 auto;
+    flex: 1 1 auto;
+    padding: 20px;
+    padding: 1.25rem;
+}
+
+.card-header:first-child {
+    border-radius: calc(.25rem - 1px) calc(.25rem - 1px) 0 0;
+}
 </style>

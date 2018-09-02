@@ -16,7 +16,7 @@ app.use(express.static('public'));
 app.use('/static', express.static('public'));
 require('./routes')(app);
 
-sequelize.sync({force: true}).then(() => {
+sequelize.sync({}).then(() => {
   app.listen(config.port);
   console.log('Server je pokrenut na portu: ' + config.port);
 });

@@ -34,10 +34,9 @@
           {{data.index +1 }}
         </template>
         <template slot="name" slot-scope="data">
-        <a href="">
-          <b-img width="70" height="70" thumbnail :src="getImgUrl(data.item.image)" alt="Logo" />
-          {{data.item.name}}
-        </a>
+      
+           
+        <router-link :to="{ path: `/klijent/${data.item.id}`}"> {{data.item.name}}</router-link>
         </template>
         <template slot="contract_number" slot-scope="data">
           {{data.item.contract_number}}
@@ -258,11 +257,6 @@
             label: 'Ugovor',
             sortable: true,
             class: 'korisnik'
-          },
-          {
-            key: 'cdr_number',
-            label: 'CDR šifra',
-            sortable: true
           },
           {
             key: 'services_type',

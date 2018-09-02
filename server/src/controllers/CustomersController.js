@@ -77,5 +77,16 @@ module.exports = {
         error: error
       });
     }
+  },
+  getByName (req, res) {
+    try {
+      Customers.findById(req.params.id).then((data) => {
+        res.send(data);
+      });
+    } catch (error) {
+      res.status(500).send({
+        error: error
+      });
+    }
   }
 };

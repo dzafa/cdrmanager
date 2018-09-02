@@ -23,10 +23,11 @@ module.exports = function (app) {
   app.post('/prijava',
     AuthenticationControllerPolicy.login,
     AuthenticationController.login);
-  app.get('/klijenti', CustomersController.index);
   app.get('/sap', SapController.index);
   app.post('/sap', SapController.post);
   app.delete('/sap/:id', SapController.delete);
+  app.get('/klijenti', CustomersController.index);
   app.delete('/klijent/:id', CustomersController.delete);
+  app.get('/klijent/:id', CustomersController.getByName);
   app.post('/klijent', upload.single('image'), CustomersController.post);
 };

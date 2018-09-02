@@ -1,5 +1,5 @@
 <template>
-  <div class="card card-user" style=""><div class="shape">
+  <div class="card card-user" ><div class="shape">
 					<div class="shape-text">
 					153,00								
 					</div>
@@ -7,18 +7,14 @@
     <div class="p-4 bg-dark">   
     <div class="content">
       <div class="author" style="padding-top:24px;"></div> 
-        <img class="avatar border-white" src="http://localhost:3000/static/images/clients/logo/image-1535629668916" alt="...">
-
-        
-      <h4 class="title">AS Grupacija 
+      <img class="avatar border-white" :src="getImgUrl(user.image)" alt="...">
+      <h4 class="title"> {{ user.name }}
         </h4><b-badge variant="success">Aktivno</b-badge>
-        <b-badge variant="yellow">Enterprise Cloud</b-badge>
+        <b-badge variant="yellow">{{ user.services_type }}</b-badge>
         <br><br>
-       
-
-      <p><span class="glyphicon glyphicon-map-marker"></span> Trg Djeca Dobrinje 20/1, Sarajevo</p>
-      <p><span class="glyphicon glyphicon-phone"></span> +38762 121-931</p>
-      <p><span class="glyphicon glyphicon-envelope"></span> edin.hodzic@klas.ba</p>
+      <p><span class="glyphicon glyphicon-map-marker"></span> {{ user.address + ', ' +  user.city}}</p>
+      <p><span class="glyphicon glyphicon-phone"></span> {{ user.contact_number}}</p>
+      <p><span class="glyphicon glyphicon-envelope"></span> {{ user.email}}</p>
         </div>
       
     </div>
@@ -57,6 +53,7 @@
         ]
       }
     },
+    props: ['user'],
     methods: {
       getClasses (index) {
         var remainder = index % 3
@@ -67,6 +64,9 @@
         } else {
           return 'col-md-3'
         }
+      },
+      getImgUrl (name) {
+        return 'http://localhost:3000/static/images/clients/logo/' + name
       }
     }
   }
@@ -93,6 +93,13 @@
 }
 .shape {
     border-color: rgba(255,255,255,0) #28a745 rgba(255,255,255,0) rgba(255,255,255,0);
+}
+.card-user .avatar {
+    width:75px;
+    height: 75px;
+    border-radius: 50%;
+    position: relative;
+    margin-bottom: 15px;
 }
 .shape-text {
     color: #fff;

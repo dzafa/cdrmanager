@@ -20,45 +20,52 @@
         </ul>
       </div>
     </div>
+   
   </nav>
 </template>
 <script>
-  export default {
-    computed: {
-      routeName () {
-        const {name} = this.$route
-        return this.capitalizeFirstLetter(name)
-      }
-    },
-    data () {
-      return {
-        activeNotifications: false
-      }
-    },
-    methods: {
-      capitalizeFirstLetter (string) {
-        return string.charAt(0).toUpperCase() + string.slice(1)
-      },
-      toggleNotificationDropDown () {
-        this.activeNotifications = !this.activeNotifications
-      },
-      closeDropDown () {
-        this.activeNotifications = false
-      },
-      toggleSidebar () {
-        this.$sidebar.displaySidebar(!this.$sidebar.showSidebar)
-      },
-      hideSidebar () {
-        this.$sidebar.displaySidebar(false)
-      },
-      logout () {
-        this.$router.push({
-          path: '/prijava'
-        })
-      }
+import Customers from 'services/CustomersService'
+export default {
+  data () {
+    return {
+      activeNotifications: false
     }
+  },
+  computed: {
+    routeName () {
+      let {name} = this.$route
+      if (name === 'klijent') {
+        name = 'Klijent'
+      }
+      return this.capitalizeFirstLetter(name)
+    }
+  },
+  methods: {
+    capitalizeFirstLetter (string) {
+      return string.charAt(0).toUpperCase() + string.slice(1)
+    },
+    toggleNotificationDropDown () {
+      this.activeNotifications = !this.activeNotifications
+    },
+    closeDropDown () {
+      this.activeNotifications = false
+    },
+    toggleSidebar () {
+      this.$sidebar.displaySidebar(!this.$sidebar.showSidebar)
+    },
+    hideSidebar () {
+      this.$sidebar.displaySidebar(false)
+    },
+    logout () {
+      this.$router.push({
+        path: '/prijava'
+      })
+    }
+  },
+  async mounted () {
+    this.user = (await Customers.getByName(this.$route.params.id)).data
   }
-
+}
 </script>
 <style>
 .navbar-right-menu .navbar-user img {

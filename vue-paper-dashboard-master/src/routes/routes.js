@@ -33,6 +33,17 @@ const routes = [
     path: '/registracija'
   },
   {
+    path: '/klijent',
+    component: DashboardLayout,
+    children: [
+      {
+        path: ':id',
+        name: 'klijent',
+        component: UserProfile
+      }
+    ]
+  },
+  {
     path: '/klijenti',
     component: DashboardLayout,
     redirect: '/klijenti/lista',
@@ -65,11 +76,6 @@ const routes = [
         path: 'overview',
         name: 'overview',
         component: Overview
-      },
-      {
-        path: 'stats',
-        name: 'stats',
-        component: UserProfile
       },
       {
         path: 'notifications',

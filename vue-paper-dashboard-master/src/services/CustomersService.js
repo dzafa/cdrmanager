@@ -4,6 +4,9 @@ export default {
   index () {
     return Api().get('klijenti')
   },
+  getByName (name) {
+    return Api().get('klijent/' + name)
+  },
   post (arg) {
     const fd = new FormData()
     fd.append('contract_number', arg.contract_number)
